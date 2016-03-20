@@ -11,13 +11,23 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class RootController {
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping("/")
 	public ModelAndView index(ModelAndView mav){
 		mav.setViewName("index");
 		mav.addObject("msg", "お名前を書いて送信してください。");
 		return mav;
 	}
+	
+	@RequestMapping("/other")
+	public String other(){
+		return "redirect:/";
+	}
 
+	@RequestMapping("/home")
+	public String home(){
+		return "forward:/";
+	}
+	
 	@RequestMapping(value="/", method=RequestMethod.POST)
 	public ModelAndView send(
 			@RequestParam(value="check1", required=false)boolean check1,
